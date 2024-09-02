@@ -17,8 +17,6 @@ sys.path.append('C:\\Program Files\\Maple 2024\\Python.X86_64_WINDOWS\\lib')
 
 Do a simple test to check everything is working with
 
-import maple
-
-import maple.namespace as mpl
-
-print( mpl.int( mpl.x ** 2, mpl.x ) )
+ import maple
+ import maple.namespace as mpl
+ print( mpl.int( mpl.x ** 2, mpl.x ) )

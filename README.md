@@ -1,4 +1,4 @@
-== OpenMaple Application Program Interface (API) for Python ==
+OpenMaple Application API for Python
 OpenMaple for Python provides an interface between the Maple evaluation engine and a Python program.  This is implemented using Python classes and standard interfaces.
 
 Intructions for use

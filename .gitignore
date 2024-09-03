@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+*$py.class
+/build
+/dist
+.coverage
+.vscode
+*.code-workspace
+/test-reports
+.DS_Store
+/env

@@ -29,7 +29,7 @@ import maple.namespace as mpl
 print( mpl.int( mpl.x ** 2, mpl.x ) )
 ```
 
-### Licencing 
+### Licensing 
 This project is released under the [MIT license](LICENSE.txt).
 
 ### Contributions

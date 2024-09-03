@@ -28,7 +28,7 @@ print( mpl.int( mpl.x ** 2, mpl.x ) )
 ```
 
 ### Licencing 
-This project is released under the MIT license.
+This project is released under the [MIT license](LICENSE.txt).
 
 ### Contributions
 This project is maintained by Maplesoft on its [Github repot](https://github.com/Maplesoft/openmaple).

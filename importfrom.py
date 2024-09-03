@@ -9,8 +9,6 @@ numpy = find_spec('numpy') and import_module('numpy') or None
 scipy = find_spec('scipy') and import_module('scipy') or None
 mpmath = find_spec('mpmath') and import_module('mpmath') or None
 sympy = find_spec('sympy') and import_module('sympy') or None
-#tensorflow = find_spec('tensorflow') and import_module('tensorflow') or None
-tensorflow = None
 
 class importfrom:
 

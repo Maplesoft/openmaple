@@ -22,7 +22,7 @@ Note: if you wish to use the OpenMaple for Python shipped with Maple, it is loca
 sys.path.append('C:\\Program Files\\Maple 2024\\Python.X86_64_WINDOWS\\lib')
 ```
 
-Do a simple test to check everything is working with
+Once you are certain OpenMaple for Python is installed and in the module search path, do a simple test to check everything is working with
 ```
 import maple
 import maple.namespace as mpl

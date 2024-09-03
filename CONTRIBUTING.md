@@ -10,4 +10,4 @@ By contributing to Maplesoft, you agree and affirm that:
 
 > You have read and agreed to the [Developer Certificate of Origin](http://developercertificate.org/), version 1.1 or later.
 
-Please see [LICENSE.txt](LICENSE) for licensing conditions pertaining specifically to this repository.
+Please see [LICENSE](LICENSE.txt) for licensing conditions pertaining specifically to this repository.

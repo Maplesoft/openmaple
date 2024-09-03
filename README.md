@@ -1,6 +1,6 @@
 ## OpenMaple API for Python
 
-OpenMaple for Python provides an interface between the Maple evaluation engine and a Python program.  This is implemented using Python classes and standard interfaces.
+**OpenMaple for Python** provides an interface between the Maple evaluation engine and a Python program.  This is implemented using Python classes and standard interfaces.
 
 ### Instructions for use
 
@@ -15,7 +15,7 @@ Alternatively, you can set an environment variable to explicitly specify the Map
 
 Next, launch Python. If using a version of Python other than the one shipped with Maple, ensure it is Python 3.11 or later and that numpy is installed and working. 
 
-If it not already in the Python module search path (sys.path), add the installed location of the OpenMaple for Python with
+If it not already in the Python module search path (`sys.path`), add the installed location of the OpenMaple for Python with
 ```
 sys.path.append('C:\\Program Files\\Maple 2024\\Python.X86_64_WINDOWS\\lib')
 ```

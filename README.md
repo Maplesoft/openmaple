@@ -1,8 +1,8 @@
-OpenMaple API for Python
+## OpenMaple API for Python
 
 OpenMaple for Python provides an interface between the Maple evaluation engine and a Python program.  This is implemented using Python classes and standard interfaces.
 
-Instructions for use
+### Instructions for use
 
 OpenMaple for Python requires an installation of Maple 2023 on the same machine. To get this to work, set either an environment variable to specify the location of your Maple installation.
 

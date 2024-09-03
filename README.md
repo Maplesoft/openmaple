@@ -26,3 +26,9 @@ import maple
 import maple.namespace as mpl
 print( mpl.int( mpl.x ** 2, mpl.x ) )
 ```
+
+### Licencing 
+This project is released under the MIT license.
+
+### Contributions
+This project is maintained by Maplesoft on its [Github repot](https://github.com/Maplesoft/openmaple).

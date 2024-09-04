@@ -90,20 +90,21 @@ class importfrom:
                     b = bytes( str(a) + ':', 'utf-8' )
                     return sess._maplec.EvalMapleStatement( sess._kv, b )
                 elif(isinstance(a,sympy.NumberSymbol)):
-                    if(str(a)=='Catalan'):
-                        return sess._maplec.ToMapleName( sess._kv, b'Catalan', True )
-                    elif(str(a)=='EulerGamma'):
-                        return sess._maplec.ToMapleName( sess._kv, b'gamma', True )
-                    elif(str(a)=='Exp1'):
-                        return sess._maplec.EvalMapleStatement( sess._kv, b'exp(1):' )
-                    elif(str(a)=='GoldenRatio'):
-                        return sess._maplec.EvalMapleStatement( sess._kv, b'(sqrt(5)+1)/2:' )
-                    elif(str(a)=='Pi'):
-                        return sess._maplec.ToMapleName( sess._kv, b'Pi', True )
-                    elif(str(a)=='TribonacciConstant'):
-                        return sess._maplec.EvalMapleStatement( sess._kv, b'RootOf(_Z^3-_Z^2-_Z-1):' )
-                    else:
-                        raise NotImplementedError
+                    match(str(a)):
+                        case 'Catalan':
+                            return sess._maplec.ToMapleName( sess._kv, b'Catalan', True )
+                        case 'EulerGamma':
+                            return sess._maplec.ToMapleName( sess._kv, b'gamma', True )
+                        case 'Exp1':
+                            return sess._maplec.EvalMapleStatement( sess._kv, b'exp(1):' )
+                        case 'GoldenRatio':
+                            return sess._maplec.EvalMapleStatement( sess._kv, b'(sqrt(5)+1)/2:' )
+                        case 'Pi':
+                            return sess._maplec.ToMapleName( sess._kv, b'Pi', True )
+                        case 'TribonacciConstant':
+                            return sess._maplec.EvalMapleStatement( sess._kv, b'RootOf(_Z^3-_Z^2-_Z-1):' )
+                        case _:
+                            raise NotImplementedError
                 elif(isinstance(a,sympy.Add)):
                     (b, c) = a.as_two_terms()
                     return sess._eval_procedure_nowrap( '+', b, c )
@@ -115,89 +116,89 @@ class importfrom:
                     return sess._eval_procedure_nowrap( '^', b, c )
                 elif(isinstance(a,sympy.Function)):
                     sympy_fname = str(a.func)
-                    if(sympy_fname == 'Id'):
-                        raise NotImplementedError
-                    elif(sympy_fname == 'Abs'): fname = 'abs'
-                    elif(sympy_fname == 'ExprCondPair'): raise NotImplementedError
-                    elif(sympy_fname == 'FallingFactorial'): raise NotImplementedError
-                    elif(sympy_fname == 'HyperbolicFunction'): raise NotImplementedError
-                    elif(sympy_fname == 'IdentityFunction'):
-                        return sess._maplec.EvalMapleStatement( sess._kv, b'()->args:' )
-                    elif(sympy_fname == 'LambertW'): fname = sympy_fname
-                    elif(sympy_fname == 'Max'): fname = 'max'
-                    elif(sympy_fname == 'Min'): fname = 'min'
-                    elif(sympy_fname == 'MultiFactorial'): raise NotImplementedError
-                    elif(sympy_fname == 'Piecewise'): raise NotImplementedError
-                    elif(sympy_fname == 'RisingFactorial'): raise NotImplementedError
-                    elif(sympy_fname == 'RoundFunction'): raise NotImplementedError
-                    elif(sympy_fname == 'acos'): fname = 'arccos'
-                    elif(sympy_fname == 'acosh'): fname = 'arccosh'
-                    elif(sympy_fname == 'acot'): fname = 'arccot'
-                    elif(sympy_fname == 'acoth'): fname = 'arccoth'
-                    elif(sympy_fname == 'acsc'): fname = 'arccsc'
-                    elif(sympy_fname == 'acsch'): fname = 'arccsch'
-                    elif(sympy_fname == 'arg'): fname = 'argument'
-                    elif(sympy_fname == 'asec'): fname = 'arcsec'
-                    elif(sympy_fname == 'asech'): fname = 'arcsech'
-                    elif(sympy_fname == 'asin'): fname = 'arcsin'
-                    elif(sympy_fname == 'asinh'): fname = 'arcsinh'
-                    elif(sympy_fname == 'atan'): fname = 'arctan'
-                    elif(sympy_fname == 'atan2'): fname = 'arctan'
-                    elif(sympy_fname == 'atanh'): fname = 'arctanh'
-                    elif(sympy_fname == 'bell'): raise NotImplementedError
-                    elif(sympy_fname == 'bernoulli'): raise NotImplementedError
-                    elif(sympy_fname == 'binomial'): fname = sympy_fname
-                    elif(sympy_fname == 'catalan'): raise NotImplementedError
-                    elif(sympy_fname == 'cbrt'):
-                        return sess._eval_procedure_nowrap( 'surd', a[0], 3, *(a.args[1:]) )
-                    elif(sympy_fname == 'ceiling'): fname = 'ceil'
-                    elif(sympy_fname == 'conjugate'): fname = sympy_fname
-                    elif(sympy_fname == 'cos'): fname = sympy_fname
-                    elif(sympy_fname == 'cosh'): fname = sympy_fname
-                    elif(sympy_fname == 'cot'): fname = sympy_fname
-                    elif(sympy_fname == 'coth'): fname = sympy_fname
-                    elif(sympy_fname == 'csc'): fname = sympy_fname
-                    elif(sympy_fname == 'csch'): fname = sympy_fname
-                    elif(sympy_fname == 'euler'): raise NotImplementedError
-                    elif(sympy_fname == 'exp'): fname = sympy_fname
-                    elif(sympy_fname == 'exp_polar'): fname = 'exp'
-                    elif(sympy_fname == 'factorial'): fname = sympy_fname
-                    elif(sympy_fname == 'factorial2'): fname = 'doublefactorial'
-                    elif(sympy_fname == 'fibonacci'): raise NotImplementedError
-                    elif(sympy_fname == 'floor'): fname = sympy_fname
-                    elif(sympy_fname == 'frac'): fname = sympy_fname
-                    elif(sympy_fname == 'genocchi'): raise NotImplementedError
-                    elif(sympy_fname == 'harmonic'): fname = sympy_fname
-                    elif(sympy_fname == 'im'): fname = 'Im'
-                    elif(sympy_fname == 'log'): fname = sympy_fname
-                    elif(sympy_fname == 'lucas'): raise NotImplementedError
-                    elif(sympy_fname == 'nC'): raise NotImplementedError
-                    elif(sympy_fname == 'nP'): raise NotImplementedError
-                    elif(sympy_fname == 'nT'): raise NotImplementedError
-                    elif(sympy_fname == 'partition'): raise NotImplementedError
-                    elif(sympy_fname == 'periodic_argument'): raise NotImplementedError
-                    elif(sympy_fname == 'polar_lift'): raise NotImplementedError
-                    elif(sympy_fname == 'principal_branch'): raise NotImplementedError
-                    elif(sympy_fname == 're'): fname = 'Re'
-                    elif(sympy_fname == 'real_root'): raise NotImplementedError
-                    elif(sympy_fname == 'real_roots'):
-                        sol = sess._eval_procedure('solve', *(a.args) )
-                        return sess._eval_procedure_nowrap('[]', sol)
-                    elif(sympy_fname == 'root'): raise NotImplementedError
-                    elif(sympy_fname == 'sec'): fname = sympy_fname
-                    elif(sympy_fname == 'sech'): fname = sympy_fname
-                    elif(sympy_fname == 'sign'): fname = sympy_fname
-                    elif(sympy_fname == 'sin'): fname = sympy_fname
-                    elif(sympy_fname == 'sinc'): raise NotImplementedError
-                    elif(sympy_fname == 'sinh'): fname = sympy_fname
-                    elif(sympy_fname == 'sqrt'): fname = sympy_fname
-                    elif(sympy_fname == 'stirling'): raise NotImplementedError
-                    elif(sympy_fname == 'subfactorial'): raise NotImplementedError
-                    elif(sympy_fname == 'tan'): fname = sympy_fname
-                    elif(sympy_fname == 'tanh'): fname = sympy_fname
-                    elif(sympy_fname == 'tribonacci'): raise NotImplementedError
-                    else:
-                        raise NotImplementedError
+                    match sympy_fname:
+
+                        case 'Id': raise NotImplementedError
+                        case 'Abs': fname = 'abs'
+                        case 'ExprCondPair': raise NotImplementedError
+                        case 'FallingFactorial': raise NotImplementedError
+                        case 'HyperbolicFunction': raise NotImplementedError
+                        case 'IdentityFunction':
+                            return sess._maplec.EvalMapleStatement( sess._kv, b'()->args:' )
+                        case 'LambertW': fname = sympy_fname
+                        case 'Max': fname = 'max'
+                        case 'Min': fname = 'min'
+                        case 'MultiFactorial': raise NotImplementedError
+                        case 'Piecewise': raise NotImplementedError
+                        case 'RisingFactorial': raise NotImplementedError
+                        case 'RoundFunction': raise NotImplementedError
+                        case 'acos': fname = 'arccos'
+                        case 'acosh': fname = 'arccosh'
+                        case 'acot': fname = 'arccot'
+                        case 'acoth': fname = 'arccoth'
+                        case 'acsc': fname = 'arccsc'
+                        case 'acsch': fname = 'arccsch'
+                        case 'arg': fname = 'argument'
+                        case 'asec': fname = 'arcsec'
+                        case 'asech': fname = 'arcsech'
+                        case 'asin': fname = 'arcsin'
+                        case 'asinh': fname = 'arcsinh'
+                        case 'atan': fname = 'arctan'
+                        case 'atan2': fname = 'arctan'
+                        case 'atanh': fname = 'arctanh'
+                        case 'bell': raise NotImplementedError
+                        case 'bernoulli': raise NotImplementedError
+                        case 'binomial': fname = sympy_fname
+                        case 'catalan': raise NotImplementedError
+                        case 'cbrt':
+                            return sess._eval_procedure_nowrap( 'surd', a[0], 3, *(a.args[1:]) )
+                        case 'ceiling': fname = 'ceil'
+                        case 'conjugate': fname = sympy_fname
+                        case 'cos': fname = sympy_fname
+                        case 'cosh': fname = sympy_fname
+                        case 'cot': fname = sympy_fname
+                        case 'coth': fname = sympy_fname
+                        case 'csc': fname = sympy_fname
+                        case 'csch': fname = sympy_fname
+                        case 'euler': raise NotImplementedError
+                        case 'exp': fname = sympy_fname
+                        case 'exp_polar': fname = 'exp'
+                        case 'factorial': fname = sympy_fname
+                        case 'factorial2': fname = 'doublefactorial'
+                        case 'fibonacci': raise NotImplementedError
+                        case 'floor': fname = sympy_fname
+                        case 'frac': fname = sympy_fname
+                        case 'genocchi': raise NotImplementedError
+                        case 'harmonic': fname = sympy_fname
+                        case 'im': fname = 'Im'
+                        case 'log': fname = sympy_fname
+                        case 'lucas': raise NotImplementedError
+                        case 'nC': raise NotImplementedError
+                        case 'nP': raise NotImplementedError
+                        case 'nT': raise NotImplementedError
+                        case 'partition': raise NotImplementedError
+                        case 'periodic_argument': raise NotImplementedError
+                        case 'polar_lift': raise NotImplementedError
+                        case 'principal_branch': raise NotImplementedError
+                        case 're': fname = 'Re'
+                        case 'real_root': raise NotImplementedError
+                        case 'real_roots':
+                            sol = sess._eval_procedure('solve', *(a.args) )
+                            return sess._eval_procedure_nowrap('[]', sol)
+                        case 'root': raise NotImplementedError
+                        case 'sec': fname = sympy_fname
+                        case 'sech': fname = sympy_fname
+                        case 'sign': fname = sympy_fname
+                        case 'sin': fname = sympy_fname
+                        case 'sinc': raise NotImplementedError
+                        case 'sinh': fname = sympy_fname
+                        case 'sqrt': fname = sympy_fname
+                        case 'stirling': raise NotImplementedError
+                        case 'subfactorial': raise NotImplementedError
+                        case 'tan': fname = sympy_fname
+                        case 'tanh': fname = sympy_fname
+                        case 'tribonacci': raise NotImplementedError
+                        case _: raise NotImplementedError
                     return sess._eval_procedure_nowrap( fname, *(a.args) )
                 else:
                     raise NotImplementedError

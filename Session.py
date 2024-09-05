@@ -37,7 +37,9 @@ def _find_maple_binary():
         binfile='maplec.dll'
     # look for binary file under $MAPLE or in directory identified with
     #  platform-specific environment variable
-    if 'MAPLE' in os.environ:
+    if 'PYTHONMAPLE' in os.environ:
+        libpath=_find_maple_binary_dir(os.environ['PYTHONMAPLE'],binfile)
+    elif 'MAPLE' in os.environ:
         libpath=_find_maple_binary_dir(os.environ['MAPLE'],binfile)
     elif pl.startswith('darwin') and 'DYLD_LIBRARY_PATH' in os.environ:
         libpath=os.environ['DYLD_LIBRARY_PATH']

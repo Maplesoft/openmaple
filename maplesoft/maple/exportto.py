@@ -1,6 +1,6 @@
 from importlib import import_module
 from importlib.util import find_spec
-from openmaple.Expression import Expression
+from maplesoft.maple.Expression import Expression
 
 import datetime
 import decimal

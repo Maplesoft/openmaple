@@ -1,4 +1,4 @@
-import openmaple
+import maplesoft.maple
 
 import os
 import os.path

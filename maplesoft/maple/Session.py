@@ -15,13 +15,27 @@ import fractions
 import numbers
 
 def _find_maple_binary_dir(search_path, target):
-    dirlist=os.listdir(search_path)
-    for bdir in dirlist:
-        if bdir.startswith('bin'):
-            abs_bdir=os.path.join(search_path,bdir)
-            for root, _, files in os.walk(abs_bdir):
-                if target in files:
-                    return root;
+    for u in os.listdir(search_path):
+        absu=os.path.join(search_path,u)
+        if not os.path.isdir(absu):
+            next
+        elif u.startswith('bin'):
+            res=_find_maple_binary_file(absu, target) 
+            if res is not None:
+                return res
+        else:
+            for v in os.listdir(absu):
+                if v.startswith('bin'):
+                    absv=os.path.join(absu,v)
+                    res=_find_maple_binary_file(absv, target) 
+                    if res is not None:
+                        return res
+    return None
+
+def _find_maple_binary_file(bdir, target):
+    for root, _, files in os.walk(bdir):
+        if target in files:
+            return root;
     return None
 
 def _find_maple_binary():

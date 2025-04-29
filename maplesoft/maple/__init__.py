@@ -9,8 +9,8 @@ elif not (sys.version_info >= (3,8)):
 
 from maplesoft.maple.Expression import Expression
 from maplesoft.maple.Session import Session
-from maplesoft.maple.importfrom import importfrom
 from maplesoft.maple.exportto import exportto
+from maplesoft.maple.importfrom import importfrom
 
 _activesession = Session()
 

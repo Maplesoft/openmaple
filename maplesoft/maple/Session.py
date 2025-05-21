@@ -1,6 +1,6 @@
-import openmaple.maplec_ctypes
+from maplesoft.maple.Expression import ComplexNumeric,Expression,ExpressionSequence,Indexable,List,Name,RealNumeric,RTable,Set,Table
 
-from openmaple.Expression import ComplexNumeric,Expression,ExpressionSequence,Indexable,List,Name,RealNumeric,RTable,Set,Table
+import maplesoft.maple.maplec_ctypes as maplec_ctypes
 
 import datetime
 import os
@@ -15,13 +15,27 @@ import fractions
 import numbers
 
 def _find_maple_binary_dir(search_path, target):
-    dirlist=os.listdir(search_path)
-    for bdir in dirlist:
-        if bdir.startswith('bin'):
-            abs_bdir=os.path.join(search_path,bdir)
-            for root, _, files in os.walk(abs_bdir):
-                if target in files:
-                    return root;
+    for u in os.listdir(search_path):
+        absu=os.path.join(search_path,u)
+        if not os.path.isdir(absu):
+            next
+        elif u.startswith('bin'):
+            res=_find_maple_binary_file(absu, target) 
+            if res is not None:
+                return res
+        else:
+            for v in os.listdir(absu):
+                if v.startswith('bin'):
+                    absv=os.path.join(absu,v)
+                    res=_find_maple_binary_file(absv, target) 
+                    if res is not None:
+                        return res
+    return None
+
+def _find_maple_binary_file(bdir, target):
+    for root, _, files in os.walk(bdir):
+        if target in files:
+            return root;
     return None
 
 def _find_maple_binary():
@@ -65,9 +79,9 @@ class Session:
     def __init__(self):
         """Initialize session."""
 
-        sm_argv = maple.maplec_ctypes.char_pointer()
-        self.errorBuf = maple.maplec_ctypes.create_string()
-        self.mcbv = maple.maplec_ctypes.buildCallBackVector()
+        sm_argv = maplec_ctypes.char_pointer()
+        self.errorBuf = maplec_ctypes.create_string()
+        self.mcbv = maplec_ctypes.buildCallBackVector()
 
         sofile = _find_maple_binary()
         # if we have not found our object file, die with an error
@@ -75,7 +89,7 @@ class Session:
             raise FileNotFoundError
 
         # assign our maplec object - sole means of access to Maple C API
-        self._maplec = maple.maplec_ctypes.load_maplec(sofile)
+        self._maplec = maplec_ctypes.load_maplec(sofile)
 
         if(self._maplec is None): raise RuntimeError
         self._kv = self._maplec.StartMaple( 0, sm_argv, self.mcbv, 0, 0, self.errorBuf )

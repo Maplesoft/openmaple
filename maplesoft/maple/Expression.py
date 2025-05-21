@@ -1,16 +1,15 @@
-import openmaple
+import maplesoft.maple
 
 import os
 import os.path
 import sys
 
-# Python standard library interface implementations
+# Interface implementations
 import collections.abc
 import datetime
 import decimal
 import fractions
 import numbers
-# import numpy for conversions
 import numpy
 
 class Expression(collections.abc.Callable,collections.abc.Hashable,collections.abc.Sized):

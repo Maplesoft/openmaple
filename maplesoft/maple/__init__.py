@@ -7,10 +7,10 @@ elif not (sys.version_info >= (3,8)):
     print("This script requires Python version >= 3.8")
     exit()
 
-from openmaple.Expression import Expression
-from openmaple.Session import Session
-from openmaple.importfrom import importfrom
-from openmaple.exportto import exportto
+from maplesoft.maple.Expression import Expression
+from maplesoft.maple.Session import Session
+from maplesoft.maple.exportto import exportto
+from maplesoft.maple.importfrom import importfrom
 
 _activesession = Session()
 

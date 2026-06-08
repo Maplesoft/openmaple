@@ -4,7 +4,7 @@
 
 ### Instructions for use
 
-OpenMaple for Python requires an installation of Maple 2023 or later on the same machine. To get this to work, set either an environment variable to specify the location of your Maple installation.
+OpenMaple for Python requires an installation of Maple 2024 or later on the same machine. To get this to work, set either an environment variable to specify the location of your Maple installation.
 
 You can set the **`MAPLE`** environment variable to point at the root of your Maple installation, for example `C:\Program Files\Maple 2024` (on Windows) or `/Library/Frameworks/Maple.framework/Versions/2024` (on macOS).
 
